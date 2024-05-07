@@ -1,0 +1,24 @@
+char** tokenizeString(char* str, char* delimiter, int& rowi) {
+	int length = stringLength(str), rows[1000] = {}, j = 0;
+
+	for (int i = 0; str[i] != '\0' && i < length;) {
+		while (str[i] != delimiter[0] && str[i] != '\0')
+			i++;
+		rows[rowi] = i - j;
+		j = i + 1;
+		if (!checkEqual(str, delimiter, i))
+			rowi++;
+		i++;
+	}
+
+	int k = 0;
+	char** tokArr = new char* [rowi];
+	for (int i = 0; i < rowi; i++) {
+		tokArr[i] = new char[rows[i] + 1];
+		for (j = 0; j < rows[i]; j++)
+			tokArr[i][j] = str[k++];
+		tokArr[i][j] = '\0';
+		k++;
+	}
+	return tokArr;
+}
