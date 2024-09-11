@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Debug with SFML",
+            "name": "Debug C/C++",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
