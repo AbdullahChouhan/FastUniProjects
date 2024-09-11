@@ -13,28 +13,32 @@ mov [250h], ax ; part c
 mov [200h], cx
 
 mov cx, 0 ; part d
-sortOut: mov dl, 0
-         mov cl, 0
-         sortIn: mov ax, [cl + Num1]
-                 mov bx, [cl + Num1 + 2]
-                 cmp ax, bx
-                 jg swap
-                 add cl, 2
-                 cmp cl, 14 - ch
-                 jl sortIn
-                 add ch, 2
-                 cmp dl, 0
-                 je exit
-                 cmp ch, 14
-                 jl sortOut
+sortOut:
+      mov si, 0
+      mov bp, 0
+      sortIn:
+            mov ax, [bp + Num1]
+            mov bx, [bp + Num1 + 2]
+            cmp ax, bx
+            jg swap
+            add bp, 2
+            cmp bp, 14
+            sub bp, cx
+            jl sortIn
+            add cx, 2
+            test si, 0
+            je exit
+            cmp cx, 14
+            jl sortOut
 
 exit:
 mov ax, 0x4c00
 int 0x21
 
-swap: mov [cl + Num1], bx
-      mov [cl + Num1 + 2], ax
-      mov dl, 1
+swap:
+      mov [bp + Num1], bx
+      mov [bp + Num1 + 2], ax
+      or si, 1
       jmp sortIn
 
-Num1: dw 2, 1, 0, 0, 1, 3, -1
+Num1: db 2, 1, 0, 0, 1, 3, -1
