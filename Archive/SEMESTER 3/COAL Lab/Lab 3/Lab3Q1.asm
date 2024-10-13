@@ -1,4 +1,4 @@
-[org 0x100]
+[org 0x0100]
 
 mov ax, [num1]
 mov bx, [num2]
