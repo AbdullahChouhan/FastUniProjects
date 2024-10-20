@@ -2,6 +2,7 @@
 
 mov ax, 0xb800
 mov es, ax
+mov ds, ax
 
 mov cx, 12 * 160 / 2
 mov si, 0
